@@ -45,10 +45,8 @@ class FaceApiLogic:
         sorted_faces = sorted(faces, key=lambda i: i.size, reverse=True)
         if groups['groups']:
             for face in sorted_faces:
-                for group_face_id in groups['groups'][0]:
-                    if group_face_id == face.face_id:
+                for group in groups['groups']:
+                    if face.face_id in group:
                         return face
 
-
-        else:
-            return sorted_faces[0]
+        return sorted_faces[0]
