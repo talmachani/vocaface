@@ -13,5 +13,6 @@ face_logic = FaceApiLogic()
 def face_analyze():
     request_data = request.get_json()
     faces = face_logic.detect_all_faces(request_data)
-    best_face = FaceApiLogic.get_biggest_face(faces)
+    face_groups = face_logic.group_faces(faces)
+    best_face = FaceApiLogic.get_best_face(faces, face_groups)
     return make_response(asdict(best_face), 200)
